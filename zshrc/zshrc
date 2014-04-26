@@ -71,3 +71,4 @@ export PATH="/Users/josh/.rbenv/shims:/Users/josh/.rbenv/bin:/usr/local/bin:/Use
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+export EDITOR=nano

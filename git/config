@@ -15,4 +15,12 @@
 	prune = remote prune origin
 	s = status
 [push]
-	default = upstream
+	default = tracking
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+        ignorecase = true
+        precomposeunicode = false
+	editor = nano
