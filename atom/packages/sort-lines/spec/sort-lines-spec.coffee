@@ -1,26 +1,36 @@
-{WorkspaceView} = require 'atom'
 
 describe "sorting lines", ->
   [activationPromise, editor, editorView] = []
 
   sortLines = (callback) ->
-    editorView.trigger "sort-lines:sort"
+    atom.commands.dispatch editorView, "sort-lines:sort"
     waitsForPromise -> activationPromise
     runs(callback)
 
   sortLinesReversed = (callback) ->
-    editorView.trigger "sort-lines:reverse-sort"
+    atom.commands.dispatch editorView, "sort-lines:reverse-sort"
+    waitsForPromise -> activationPromise
+    runs(callback)
+
+  uniqueLines = (callback) ->
+    atom.commands.dispatch editorView, "sort-lines:unique"
+    waitsForPromise -> activationPromise
+    runs(callback)
+
+  sortLineCaseInsensitive = (callback) ->
+    atom.commands.dispatch editorView, "sort-lines:case-insensitive-sort"
     waitsForPromise -> activationPromise
     runs(callback)
 
   beforeEach ->
-    atom.workspaceView = new WorkspaceView
-    atom.workspaceView.openSync()
+    waitsForPromise ->
+      atom.workspace.open()
 
-    editorView = atom.workspaceView.getActiveView()
-    editor = editorView.getEditor()
+    runs ->
+      editor = atom.workspace.getActiveTextEditor()
+      editorView = atom.views.getView(editor)
 
-    activationPromise = atom.packages.activatePackage('sort-lines')
+      activationPromise = atom.packages.activatePackage('sort-lines')
 
   describe "when no lines are selected", ->
     it "sorts all lines", ->
@@ -36,6 +46,23 @@ describe "sorting lines", ->
           Helium
           Hydrogen
           Lithium
+        """
+
+    it "sorts all lines, ignoring the trailing new line", ->
+      editor.setText """
+        Hydrogen
+        Helium
+        Lithium
+
+      """
+      editor.setCursorBufferPosition([0, 0])
+
+      sortLines ->
+        expect(editor.getText()).toBe """
+          Helium
+          Hydrogen
+          Lithium
+
         """
 
   describe "when entire lines are selected", ->
@@ -120,4 +147,55 @@ describe "sorting lines", ->
           Lithium
           Hydrogen
           Helium
+        """
+
+  describe "uniqueing", ->
+    it "uniques all lines but does not change order", ->
+      editor.setText """
+        Hydrogen
+        Hydrogen
+        Helium
+        Lithium
+        Hydrogen
+        Hydrogen
+        Helium
+        Lithium
+        Hydrogen
+        Hydrogen
+        Helium
+        Lithium
+        Hydrogen
+        Hydrogen
+        Helium
+        Lithium
+      """
+
+      editor.setCursorBufferPosition([0, 0])
+
+      uniqueLines ->
+        expect(editor.getText()).toBe """
+          Hydrogen
+          Helium
+          Lithium
+        """
+
+  describe "case-insensitive sorting", ->
+    it "sorts all lines, ignoring case", ->
+      editor.setText """
+        Hydrogen
+        lithium
+        helium
+        Helium
+        Lithium
+      """
+
+      editor.setCursorBufferPosition([0, 0])
+
+      sortLineCaseInsensitive ->
+        expect(editor.getText()).toBe """
+          helium
+          Helium
+          Hydrogen
+          lithium
+          Lithium
         """
