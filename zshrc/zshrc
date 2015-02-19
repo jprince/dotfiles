@@ -7,10 +7,14 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Aliases
 alias be='bundle exec'
+alias last_screenshot="open \$(get_last_screenshot)"
+
+# Helper functions
+get_last_screenshot() {
+  find ./tmp/capybara -name "*.png" -type f | sort -nr | head -1
+}
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -59,16 +63,10 @@ export PATH="/Users/josh/.rbenv/shims:/Users/josh/.rbenv/bin:/usr/local/bin:/Use
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+export EDITOR=nano
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-export EDITOR=nano
