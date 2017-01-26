@@ -8,5 +8,6 @@
 /atom/.apm
 /atom/.gitignore
 /atom/.node-gyp
+/atom/blob-store
 /atom/compile-cache
 /atom/storage
