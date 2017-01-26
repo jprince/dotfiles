@@ -9,6 +9,8 @@ ZSH_THEME="robbyrussell"
 
 # Aliases
 alias be='bundle exec'
+alias de='docker exec -it qdwweb_rails_1'
+alias kill_qdw="ps aux | egrep '(redis-server|sidekiq|karma|puma|phantomjs)' | grep -v egrep | awk '{print \$2}' | xargs kill"
 alias last_screenshot="open \$(get_last_screenshot)"
 
 # Helper functions
@@ -58,10 +60,6 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-export PATH="/Users/josh/.rbenv/shims:/Users/josh/.rbenv/bin:/usr/local/bin:/Users/josh/.bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/binn"
-# export MANPATH="/usr/local/man:$MANPATH"
-
 # # Preferred editor for local and remote sessions
 export EDITOR=nano
 
@@ -70,3 +68,7 @@ export EDITOR=nano
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+export PATH="/bin:/usr/local/bin:/usr/bin:/usr/local/binn:/usr/sbin:/sbin:/Users/josh/.bin:/Users/josh/.rbenv/shims:/Users/josh/.rbenv/bin"
+eval "$(rbenv init -)"
+eval "$(docker-machine env docker-machine)"
