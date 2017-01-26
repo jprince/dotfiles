@@ -24,3 +24,5 @@
         ignorecase = true
         precomposeunicode = false
 	editor = nano
+[url "https://"]
+	insteadOf = git://
