@@ -1,3 +1,10 @@
+###
+WakaTime
+Description: Analytics for programmers.
+Maintainer:  WakaTime <support@wakatime.com>
+License:     BSD, see LICENSE for more details.
+Website:     https://wakatime.com/
+###
 
 AdmZip = require 'adm-zip'
 fs = require 'fs'
@@ -20,35 +27,45 @@ module.exports =
         setupConfig()
         setupEventHandlers()
         console.log 'WakaTime v'+VERSION+' loaded.'
-    
-lastAction = 0
+
+lastHeartbeat = 0
 lastFile = ''
-    
+
 enoughTimePassed = (time) ->
-    return lastAction + 120000 < time
+    return lastHeartbeat + 120000 < time
 
 setupConfig = () ->
     unless atom.config.get("wakatime.apikey")?
         defaults =
             apikey: ""
-            ignore: ["^/var/", "^/tmp/", "^/private/"]
+            ignore: ["^/var/", "^/tmp/", "^/private/", "COMMIT_EDITMSG$", "PULLREQ_EDITMSG$", "MERGE_MSG$"]
         atom.config.set("wakatime", defaults)
 
 setupEventHandlers = () ->
-    atom.workspace.eachEditor (editor) =>
+    atom.workspace.observeTextEditors (editor) =>
         try
             buffer = editor.getBuffer()
-            buffer.on 'saved', (e) =>
-                file = e.file
-                if file? and file
-                    time = Date.now()
-                    sendHeartbeat(file, time, true)
-            buffer.on 'changed', (e) =>
+            buffer.onDidSave (e) =>
                 file = buffer.file
                 if file? and file
-                    time = Date.now()
-                    if enoughTimePassed(time) or lastFile isnt file.path
-                        sendHeartbeat(file, time)
+                    lineno = null
+                    if editor.cursors.length > 0
+                        lineno = editor.cursors[0].getCurrentLineBufferRange().end.row + 1
+                    sendHeartbeat(file, lineno, true)
+            buffer.onDidChange (e) =>
+                file = buffer.file
+                if file? and file
+                    lineno = null
+                    if editor.cursors.length > 0
+                        lineno = editor.cursors[0].getCurrentLineBufferRange().end.row + 1
+                    sendHeartbeat(file, lineno)
+            editor.onDidChangeCursorPosition (e) =>
+                file = buffer.file
+                if file? and file
+                    lineno = null
+                    if editor.cursors.length > 0
+                        lineno = editor.cursors[0].getCurrentLineBufferRange().end.row + 1
+                    sendHeartbeat(file, lineno)
 
 isPythonInstalled = (callback) ->
     pythonLocation((result) ->
@@ -61,30 +78,50 @@ pythonLocation = (callback, locations) ->
     else
         if not locations?
             locations = [
-                'pythonw',
-                'python',
-                '/usr/local/bin/python',
+                "pythonw",
+                "python",
+                "/usr/local/bin/python",
                 "/usr/bin/python",
-                '\\python37\\pythonw',
-                '\\python36\\pythonw',
-                '\\python35\\pythonw',
-                '\\python34\\pythonw',
-                '\\python33\\pythonw',
-                '\\python32\\pythonw',
-                '\\python31\\pythonw',
-                '\\python30\\pythonw',
-                '\\python27\\pythonw',
-                '\\python26\\pythonw',
-                '\\python37\\python',
-                '\\python36\\python',
-                '\\python35\\python',
-                '\\python34\\python',
-                '\\python33\\python',
-                '\\python32\\python',
-                '\\python31\\python',
-                '\\python30\\python',
-                '\\python27\\python',
-                '\\python26\\python',
+                "\\python37\\pythonw",
+                "\\Python37\\pythonw",
+                "\\python36\\pythonw",
+                "\\Python36\\pythonw",
+                "\\python35\\pythonw",
+                "\\Python35\\pythonw",
+                "\\python34\\pythonw",
+                "\\Python34\\pythonw",
+                "\\python33\\pythonw",
+                "\\Python33\\pythonw",
+                "\\python32\\pythonw",
+                "\\Python32\\pythonw",
+                "\\python31\\pythonw",
+                "\\Python31\\pythonw",
+                "\\python30\\pythonw",
+                "\\Python30\\pythonw",
+                "\\python27\\pythonw",
+                "\\Python27\\pythonw",
+                "\\python26\\pythonw",
+                "\\Python26\\pythonw",
+                "\\python37\\python",
+                "\\Python37\\python",
+                "\\python36\\python",
+                "\\Python36\\python",
+                "\\python35\\python",
+                "\\Python35\\python",
+                "\\python34\\python",
+                "\\Python34\\python",
+                "\\python33\\python",
+                "\\Python33\\python",
+                "\\python32\\python",
+                "\\Python32\\python",
+                "\\python31\\python",
+                "\\Python31\\python",
+                "\\python30\\python",
+                "\\Python30\\python",
+                "\\python27\\python",
+                "\\Python27\\python",
+                "\\python26\\python",
+                "\\Python26\\python",
             ]
         args = ['--version']
         if locations.length is 0
@@ -126,17 +163,17 @@ isCLIInstalled = () ->
     return fs.existsSync(cliLocation())
 
 cliLocation = () ->
-    dir = __dirname + path.sep + 'wakatime-master' + path.sep + 'wakatime-cli.py'
+    dir = __dirname + path.sep + 'wakatime-master' + path.sep + 'wakatime' + path.sep + 'cli.py'
     return dir
 
 installCLI = (callback) ->
-    console.log 'Downloading wakatime-cli...'
+    console.log 'Downloading wakatime cli...'
     url = 'https://github.com/wakatime/wakatime/archive/master.zip'
-    zipFile = __dirname + path.sep + 'wakatime-cli.zip'
+    zipFile = __dirname + path.sep + 'wakatime-master.zip'
     downloadFile(url, zipFile, ->
-        console.log 'Extracting wakatime-cli.zip file...'
+        console.log 'Extracting wakatime-master.zip file...'
         unzip(zipFile, __dirname, true)
-        console.log 'Finished installing wakatime-cli.'
+        console.log 'Finished installing wakatime cli.'
         if callback?
             callback()
     )
@@ -157,30 +194,37 @@ unzip = (file, outputDir, cleanup) ->
     zip.extractAllTo(outputDir, true)
     if cleanup
         fs.unlink(file)
-    
-sendHeartbeat = (file, time, isWrite) ->
-    pythonLocation((python) ->
-        if python?
-            if not file.path? or file.path is undefined or fileIsIgnored(file.path)
-                return
-            apikey = atom.config.get("wakatime.apikey")
-            unless apikey
-                return
 
-            args = [cliLocation(), '--file', file.path, '--key', apikey, '--plugin', 'atom-wakatime/' + VERSION]
-            if isWrite
-                args.push('--write')
-            process.execFile(python, args, (error, stdout, stderr) ->
-                if error?
-                    console.warn error
-                # else
-                #     console.log(args)
-            )
-            lastAction = time
-            lastFile = file.path
-    )
-    
+sendHeartbeat = (file, lineno, isWrite) ->
+    time = Date.now()
+    if isWrite or enoughTimePassed(time) or lastFile isnt file.path
+        if not file.path? or file.path is undefined or fileIsIgnored(file.path)
+            return
+        pythonLocation((python) ->
+            if python?
+                apikey = atom.config.get('wakatime.apikey')
+                unless apikey
+                    return
+
+                args = [cliLocation(), '--file', file.path, '--key', apikey, '--plugin', 'atom-wakatime/' + VERSION]
+                if isWrite
+                    args.push('--write')
+                if lineno?
+                    args.push('--lineno')
+                    args.push(lineno)
+                process.execFile(python, args, (error, stdout, stderr) ->
+                    if error?
+                        console.warn error
+                    # else
+                    #     console.log(args)
+                )
+                lastHeartbeat = time
+                lastFile = file.path
+        )
+
 fileIsIgnored = (file) ->
+    if endsWith(file, 'COMMIT_EDITMSG') or endsWith(file, 'PULLREQ_EDITMSG') or endsWith(file, 'MERGE_MSG') or endsWith(file, 'TAG_EDITMSG')
+        return true
     patterns = atom.config.get("wakatime.ignore")
     ignore = false
     for pattern in patterns
@@ -189,3 +233,8 @@ fileIsIgnored = (file) ->
             ignore = true
             break
     return ignore
+
+endsWith = (str, suffix) ->
+    if str? and suffix?
+        return str.indexOf(suffix, str.length - suffix.length) != -1
+    return false

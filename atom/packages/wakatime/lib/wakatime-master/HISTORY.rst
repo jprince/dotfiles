@@ -3,6 +3,111 @@ History
 -------
 
 
+4.0.15 (2015-06-11)
+++++++++++++++++++
+
+- guess language using multiple methods, then use most accurate guess
+- use entity and type for new heartbeats api resource schema
+
+
+4.0.14 (2015-05-31)
+++++++++++++++++++
+
+- correctly log message from py.warnings module
+
+
+4.0.13 (2015-05-16)
+++++++++++++++++++
+
+- fix bug with auto detecting project name
+
+
+4.0.12 (2015-05-15)
+++++++++++++++++++
+
+- correctly display caller and lineno in log file when debug is true
+- project passed with --project argument will always be used
+- new --alternate-project argument
+
+
+4.0.11 (2015-05-12)
+++++++++++++++++++
+
+- reuse SSL connection across multiple processes for improved performance
+
+
+4.0.10 (2015-05-06)
+++++++++++++++++++
+
+- new --cursorpos argument for passing index of cursor within the file contents
+
+
+4.0.9 (2015-05-06)
+++++++++++++++++++
+
+- new --lineno argument for passing line number of cursor at time of heartbeat
+- format py.warnings log messages same as other log messages
+- include package namespace and line number in logger output
+
+
+4.0.8 (2015-04-04)
+++++++++++++++++++
+
+- added api_url config option and --apiurl cli argument for customizing api url
+
+
+4.0.7 (2015-04-02)
+++++++++++++++++++
+
+- capture warnings in log file
+
+
+4.0.6 (2015-03-31)
+++++++++++++++++++
+
+- add requests.packages directory to sys.path
+
+
+4.0.5 (2015-03-31)
+++++++++++++++++++
+
+- update requests package to v2.0.6
+- update simplejson to v3.6.5
+
+
+4.0.4 (2015-03-09)
+++++++++++++++++++
+
+- add back --ignore argument for backwards compatibility
+
+
+4.0.3 (2015-03-09)
+++++++++++++++++++
+
+- refactor module structure
+
+
+4.0.2 (2015-03-07)
+++++++++++++++++++
+
+- include cacert.pem file in pypi distribution for SSL with requests package
+
+
+4.0.1 (2015-03-03)
+++++++++++++++++++
+
+- upgrade requests library to v2.5.3 to fix SSL problem on CentOS
+- new options for excluding and including directories
+
+
+4.0.0 (2015-02-12)
+++++++++++++++++++
+
+- use requests library instead of urllib2, so api SSL cert is verified
+- new --notfile argument to support logging time without a real file
+- new --proxy argument for https proxy support
+
+
 3.0.5 (2015-01-13)
 ++++++++++++++++++
 

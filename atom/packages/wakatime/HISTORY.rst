@@ -3,6 +3,62 @@ History
 -------
 
 
+4.0.9 (2015-05-06)
+++++++++++++++++++
+
+- send current line number of cursor in heartbeat
+
+
+4.0.8 (2015-05-06)
+++++++++++++++++++
+
+- fix bug to prevent using undefined file path
+
+
+4.0.7 (2015-05-05)
+++++++++++++++++++
+
+- correctly get current file in onDidSave event handler
+
+
+4.0.6 (2015-05-01)
+++++++++++++++++++
+
+- fix syntax error
+
+
+4.0.5 (2015-05-01)
+++++++++++++++++++
+
+- don't log time to COMMIT_EDITMSG files
+
+
+4.0.4 (2015-04-23)
+++++++++++++++++++
+
+- verify SSL cert when downloading wakatime cli
+
+
+4.0.3 (2015-04-23)
+++++++++++++++++++
+
+- don't verify SSL cert when downloading wakatime cli for corporate proxies
+
+
+4.0.2 (2015-04-09)
+++++++++++++++++++
+
+- use new buffer events from current atom api
+
+
+4.0.1 (2015-03-10)
+++++++++++++++++++
+
+- upgrade wakatime cli to v4.0.4
+- new options for excluding and including directories
+- use requests library instead of urllib2, so api SSL cert is verified
+
+
 4.0.0 (2015-01-21)
 ++++++++++++++++++
 
