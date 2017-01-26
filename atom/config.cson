@@ -1,30 +1,35 @@
 "*":
-  "exception-reporting":
-    userId: "1d4570e9-2f71-704f-7fdf-f648fa7dbfcf"
-  "release-notes":
-    viewedVersion: "0.84.0"
-  welcome:
-    showOnStartup: false
-  metrics:
-    userId: "19f011ff1979828d84c3ac5dedfa049df4c0c4f3"
-  editor:
-    fontSize: 12
-    invisibles: {}
-    preferredLineLength: 99
   core:
-    themes: [
-      "atom-dark-ui"
-      "monokai"
-    ]
     ignoredNames: [
       ".git"
       ".svn"
       ".DS_Store"
     ]
+    telemetryConsent: "no"
+    themes: [
+      "atom-dark-ui"
+      "monokai"
+    ]
+  editor:
+    fontSize: 20
+    invisibles: {}
+    preferredLineLength: 99
+    showInvisibles: true
+  "exception-reporting":
+    userId: "1d4570e9-2f71-704f-7fdf-f648fa7dbfcf"
+  linter:
+    errorPanelHeight: 22
+  "linter-scss-lint": {}
+  metrics:
+    userId: "19f011ff1979828d84c3ac5dedfa049df4c0c4f3"
+  "release-notes":
+    viewedVersion: "0.84.0"
   wakatime:
+    apikey: "d0bd40b4-eb39-43af-818d-a5f7f507f743"
     ignore: [
       "^/var/"
       "^/tmp/"
       "^/private/"
     ]
-    apikey: "d0bd40b4-eb39-43af-818d-a5f7f507f743"
+  welcome:
+    showOnStartup: false
