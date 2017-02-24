@@ -9,9 +9,11 @@ ZSH_THEME="robbyrussell"
 
 # Aliases
 alias be='bundle exec'
-alias de='docker exec -it qdwweb_rails_1'
+alias der='docker exec -it qdwweb_rails_1'
+alias dek='docker exec -it qdwweb_karma_1'
 alias kill_qdw="ps aux | egrep '(redis-server|sidekiq|karma|puma|phantomjs)' | grep -v egrep | awk '{print \$2}' | xargs kill"
 alias last_screenshot="open \$(get_last_screenshot)"
+alias qdw='open "http://`docker-machine ip docker-machine`"'
 
 # Helper functions
 get_last_screenshot() {
