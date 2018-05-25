@@ -11,6 +11,10 @@ ZSH_THEME="robbyrussell"
 alias be='bundle exec'
 alias der='docker exec -it qdwweb_rails_1'
 alias dek='docker exec -it qdwweb_karma_1'
+alias drk='docker restart qdwweb_karma_1'
+alias drr='docker restart qdwweb_rails_1'
+alias docker_rm_exited="docker ps -a | grep Exited | awk '{print \$1}' | xargs docker rm"
+alias docker_rm_images="docker images | grep -i '<none>' | awk '{print \$3}' | xargs docker rmi"
 alias kill_qdw="ps aux | egrep '(redis-server|sidekiq|karma|puma|phantomjs)' | grep -v egrep | awk '{print \$2}' | xargs kill"
 alias last_screenshot="open \$(get_last_screenshot)"
 alias qdw='open "http://`docker-machine ip docker-machine`"'
@@ -71,6 +75,12 @@ export EDITOR=nano
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
 export PATH="/bin:/usr/local/bin:/usr/bin:/usr/local/binn:/usr/sbin:/sbin:/Users/josh/.bin:/Users/josh/.rbenv/shims:/Users/josh/.rbenv/bin"
 eval "$(rbenv init -)"
 eval "$(docker-machine env docker-machine)"
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+

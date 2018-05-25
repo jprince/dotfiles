@@ -1,5 +1,10 @@
 "*":
   core:
+    disabledPackages: [
+      "linter-rubocop"
+      "keybinding-resolver"
+      "wakatime"
+    ]
     ignoredNames: [
       ".git"
       ".svn"
@@ -11,19 +16,25 @@
       "monokai"
     ]
   editor:
-    fontSize: 20
+    fontSize: 16
     invisibles: {}
-    preferredLineLength: 99
+    preferredLineLength: 130
     showInvisibles: true
   "exception-reporting":
     userId: "1d4570e9-2f71-704f-7fdf-f648fa7dbfcf"
-  linter:
-    errorPanelHeight: 22
+  linter: {}
+  "linter-rubocop":
+    command: "/Users/josh/.rbenv/shims/rubocop"
+    disableWhenNoConfigFile: true
   "linter-scss-lint": {}
+  "linter-ui-default":
+    panelHeight: 81
   metrics:
     userId: "19f011ff1979828d84c3ac5dedfa049df4c0c4f3"
   "release-notes":
     viewedVersion: "0.84.0"
+  "tree-view":
+    hideVcsIgnoredFiles: true
   wakatime:
     apikey: "d0bd40b4-eb39-43af-818d-a5f7f507f743"
     ignore: [
