@@ -18,7 +18,7 @@
   editor:
     fontSize: 16
     invisibles: {}
-    preferredLineLength: 130
+    preferredLineLength: 120
     showInvisibles: true
   "exception-reporting":
     userId: "1d4570e9-2f71-704f-7fdf-f648fa7dbfcf"
