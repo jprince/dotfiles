@@ -1,5 +1,6 @@
 "*":
   "atom-ide-ui":
+    "atom-ide-diagnostics-ui": {}
     use:
       "atom-ide-diagnostics-ui": "always"
   "atom-typescript": {}
@@ -10,6 +11,7 @@
       "keybinding-resolver"
       "wakatime"
       "ide-typescript"
+      "ide-ruby"
     ]
     ignoredNames: [
       ".git"
@@ -22,7 +24,7 @@
       "monokai"
     ]
   editor:
-    fontSize: 15
+    fontSize: 16
     invisibles: {}
     preferredLineLength: 120
     showInvisibles: true
@@ -41,7 +43,8 @@
     userId: "19f011ff1979828d84c3ac5dedfa049df4c0c4f3"
   "release-notes":
     viewedVersion: "0.84.0"
-  "tree-view": {}
+  "tree-view":
+    hideVcsIgnoredFiles: true
   wakatime:
     apikey: "d0bd40b4-eb39-43af-818d-a5f7f507f743"
     ignore: [
