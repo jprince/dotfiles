@@ -75,3 +75,8 @@ export EDITOR=nano
 
 # autojumper
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# Docker
+eval $(docker-machine env docker)
+
+# VS Code
