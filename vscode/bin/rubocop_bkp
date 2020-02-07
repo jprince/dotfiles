@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export PATH="$PATH:~/.rvm/bin"
+source ~/.rvm/scripts/rvm
+
+cd `dirname $1`
+exec bundle exec rubocop $@
