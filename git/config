@@ -16,6 +16,7 @@
 	prune = remote prune origin
 	s = status
 	del = branch -D
+	rm = rebase master
         rmi = rebase master -i
 [push]
 	default = tracking
