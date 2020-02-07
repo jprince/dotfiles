@@ -4,10 +4,3 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 
-# Ignore Atom metadata files
-/atom/.apm
-/atom/.gitignore
-/atom/.node-gyp
-/atom/blob-store
-/atom/compile-cache
-/atom/storage
