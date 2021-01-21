@@ -1,0 +1,26 @@
+{
+    "window.zoomLevel": -1,
+    "editor.scrollBeyondLastLine": false,
+    "editor.tabSize": 2,
+    "editor.rulers": [
+        120
+    ],
+    "files.trimTrailingWhitespace": true,
+    "editor.fontSize": 16,
+    "workbench.colorTheme": "Atom One Dark",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "[typescriptreact]": {},
+    "diffEditor.renderSideBySide": false,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "explorer.confirmDragAndDrop": false,
+    "search.exclude": {
+        "server/coverage/**": true,
+        "server/gems/**": true,
+        "server/log/**": true
+    },
+    "ruby.rubocop.useBundler": true,
+    "ruby.rubocop.executePath": "~/.vscode/bin/",
+    "terminal.integrated.scrollback": 5000,
+    "diffEditor.ignoreTrimWhitespace": false
+}

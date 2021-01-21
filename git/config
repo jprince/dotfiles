@@ -18,6 +18,8 @@
 	del = branch -D
 	rm = rebase master
         rmi = rebase master -i
+	com = checkout master
+
 [push]
 	default = tracking
 [core]

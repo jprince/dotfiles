@@ -79,4 +79,5 @@ export EDITOR=nano
 # Docker
 eval $(docker-machine env docker)
 
-# VS Code
+# Ruby 2.7 warnings
+export RUBYOPT='-W:no-deprecated -W:no-experimental'
