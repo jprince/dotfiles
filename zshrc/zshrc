@@ -10,6 +10,7 @@ ZSH_THEME="robbyrussell"
 source $ZSH/oh-my-zsh.sh
 
 # Aliases
+alias arch_run="arch -x86_64"
 alias be='bundle exec'
 alias docker_rm_exited="docker ps -a | grep Exited | awk '{print \$1}' | xargs docker rm"
 alias docker_rm_images="docker images | grep -i '<none>' | awk '{print \$3}' | xargs docker rmi"
@@ -71,14 +72,17 @@ export EDITOR=nano
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # nvm
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+# [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # autojumper
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # Docker
-eval $(docker-machine env docker)
+# eval $(docker-machine env docker)
 
 # Ruby 2.7 warnings
-export RUBYOPT='-W:no-deprecated -W:no-experimental'
+# export RUBYOPT='-W:no-deprecated -W:no-experimental'

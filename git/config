@@ -29,6 +29,6 @@
         logallrefupdates = true
         ignorecase = true
         precomposeunicode = false
-	editor = nano
+	editor = code --wait
 [url "https://"]
 	insteadOf = git://
