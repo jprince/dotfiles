@@ -19,11 +19,11 @@
         "server/log/**": true
     },
     "ruby.rubocop.useBundler": true,
-    "ruby.rubocop.executePath": "~/.vscode/bin/",
     "terminal.integrated.scrollback": 5000,
     "editor.renderControlCharacters": false,
     "debug.toolBarLocation": "hidden",
     "keyboard.touchbar.enabled": false,
     "window.zoomLevel": 1,
-    "ruby.rubocop.suppressRubocopWarnings": true
+    "ruby.rubocop.suppressRubocopWarnings": true,
+    "ruby.rubocop.executePath": "/Users/josh/.rvm/gems/ruby-2.7.2/wrappers/"
 }
