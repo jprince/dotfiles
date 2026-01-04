@@ -1,4 +1,5 @@
 .DS_Store
 
+# Only capture the list of extensions
 vscode/extensions
 !vscode/extensions/extensions.json

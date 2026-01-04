@@ -16,10 +16,11 @@ alias docker_rm_exited="docker ps -a | grep Exited | awk '{print \$1}' | xargs d
 alias docker_rm_images="docker images | grep -i '<none>' | awk '{print \$3}' | xargs docker rmi"
 alias g='git'
 alias last_screenshot="open \$(get_last_screenshot)"
+alias boo='python3 /Users/josh/DEV/ghostty-workspace/ghostty-workspace.py -c /Users/josh/DEV/ghostty-workspace/ghostty-workspace.yaml'
+alias booc='python3 /Users/josh/DEV/ghostty-workspace/ghostty-workspace.py -c /Users/josh/DEV/ghostty-workspace/censinet-app-workspace.yaml'
 
-# Helper functions
-get_last_screenshot() {
-  find ./tmp/capybara -name "*.png" -type f | sort -nr | head -1
+choo() {
+  cd "/Users/josh/conductor/workspaces/censinet/$1"
 }
 
 # Set to this to use case-sensitive completion
@@ -111,3 +112,4 @@ eval "$(/Users/josh/.local/bin/mise activate zsh)"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+export PATH="$HOME/.local/bin:$PATH"
