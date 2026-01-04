@@ -1,0 +1,16 @@
+<svg
+  role="img"
+  focusable="false"
+  viewBox="0 0 24 24"
+  aria-label="Status Running"
+  fill="currentColor"
+  xmlns="http://www.w3.org/2000/svg">
+  <path
+    stroke="#4fb3ff"
+    fill="transparent" d="
+      M 5.37, 12
+      a 6.63, 6.63 0 1, 0 13.26, 0
+      a 6.63, 6.63 0 1, 0 -13.26, 0"
+    stroke-width="6.74">
+  </path>
+</svg>

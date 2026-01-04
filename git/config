@@ -29,6 +29,8 @@
         logallrefupdates = true
         ignorecase = true
         precomposeunicode = false
-	editor = code --wait
+	editor = cursor -n -w
 [url "https://"]
 	insteadOf = git://
+[submodule]
+	recurse = true

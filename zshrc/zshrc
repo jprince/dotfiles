@@ -62,8 +62,11 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' \
 plugins=(git)
 
 # User configuration
-# # Preferred editor for local and remote sessions
+# Preferred editor for local and remote sessions
 export EDITOR=nano
+
+# Fix for https://github.com/rails/rails/issues/38560 - which showed up when I upgraded sidekiq
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -84,5 +87,27 @@ export NVM_DIR="$HOME/.nvm"
 # Docker
 # eval $(docker-machine env docker)
 
-# Ruby 2.7 warnings
-# export RUBYOPT='-W:no-deprecated -W:no-experimental'
+# Onefetch git repository greeter
+last_repository=
+check_directory_for_new_repository() {
+	current_repository=$(git rev-parse --show-toplevel 2> /dev/null)
+	
+	if [ "$current_repository" ] && \
+	   [ "$current_repository" != "$last_repository" ]; then
+		onefetch
+	fi
+	last_repository=$current_repository
+}
+cd() {
+	builtin cd "$@"
+	check_directory_for_new_repository
+}
+
+# Homebrew: Python
+export PATH="/opt/homebrew/opt/python@3.12/libexec/bin:$PATH"
+eval "$(/Users/josh/.local/bin/mise activate zsh)"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

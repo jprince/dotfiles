@@ -1,0 +1,776 @@
+{
+	"publisher": "appland",
+	"name": "appmap",
+	"displayName": "AppMap",
+	"description": "AI-driven chat with a deep understanding of your code. Build effective solutions using an intuitive chat interface and powerful code visualizations.",
+	"version": "0.136.1",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/getappmap/vscode-appland"
+	},
+	"qna": "https://appmap.io/docs/faq.html",
+	"engines": {
+		"vscode": "^1.61.0"
+	},
+	"agents": {
+		"ruby": ">=0.60.0"
+	},
+	"activationEvents": [
+		"onStartupFinished"
+	],
+	"icon": "images/logo.png",
+	"license": "MIT",
+	"main": "./out/extension.js",
+	"categories": [
+		"AI",
+		"Chat",
+		"Visualization",
+		"Machine Learning",
+		"Programming Languages",
+		"Debuggers"
+	],
+	"keywords": [
+		"ai",
+		"anthropic",
+		"architecture",
+		"autocomplete",
+		"claude",
+		"code analysis",
+		"code completion",
+		"code explanation",
+		"code recommendation",
+		"coding assistant",
+		"dependency",
+		"diagram",
+		"diff",
+		"documentation",
+		"gpt",
+		"chatgpt",
+		"java",
+		"javascript",
+		"llm",
+		"map",
+		"mistral",
+		"mixtral",
+		"monitoring",
+		"node",
+		"node.js",
+		"observability",
+		"ollama",
+		"openai",
+		"python",
+		"refactor",
+		"ruby",
+		"security",
+		"snippets",
+		"software design",
+		"technical debt",
+		"testing",
+		"tracing",
+		"typescript",
+		"uml",
+		"visualization"
+	],
+	"contributes": {
+		"customEditors": [
+			{
+				"viewType": "appmap.views.appMapFile",
+				"displayName": "AppMap file",
+				"selector": [
+					{
+						"filenamePattern": "*.appmap.json"
+					},
+					{
+						"filenamePattern": "*.diff.sequence.json"
+					}
+				],
+				"priority": "default"
+			}
+		],
+		"commands": [
+			{
+				"command": "appmap.navie.history",
+				"title": "AppMap: Open Navie History",
+				"icon": "$(history)"
+			},
+			{
+				"command": "appmap.navie.quickReview",
+				"title": "AppMap: Start Quick Review",
+				"icon": "$(law)"
+			},
+			{
+				"command": "appmap.getAppmapState",
+				"title": "AppMap: Copy Current AppMap State to Clipboard"
+			},
+			{
+				"command": "appmap.setAppmapState",
+				"title": "AppMap: Set AppMap State From Serialized String"
+			},
+			{
+				"command": "appmap.findByName",
+				"title": "AppMap: Find an AppMap by Name",
+				"icon": "$(search-view-icon)"
+			},
+			{
+				"command": "appmap.applyFilter",
+				"title": "AppMap: Filter All AppMaps by Name",
+				"icon": "$(extensions-filter)"
+			},
+			{
+				"command": "appmap.openInstallGuide",
+				"title": "AppMap: Open Data Recording Guide",
+				"icon": "$(book)"
+			},
+			{
+				"command": "appmap.view.focusAppMap",
+				"title": "AppMap: Open AppMaps View"
+			},
+			{
+				"command": "appmap.startRemoteRecording",
+				"title": "AppMap: Start a Remote Recording",
+				"icon": "images/record_start.svg"
+			},
+			{
+				"command": "appmap.getRemoteRecordingStatus",
+				"title": "AppMap: Get Remote Recording Status"
+			},
+			{
+				"command": "appmap.stopRemoteRecording",
+				"title": "AppMap: Stop the Remote Recording",
+				"icon": "images/record_stop.svg"
+			},
+			{
+				"command": "appmap.stopCurrentRemoteRecording",
+				"title": "AppMap: Stop the Active Remote Recording",
+				"icon": "images/record_stop.svg",
+				"when": "appmap.recordingIsRunning"
+			},
+			{
+				"command": "appmap.resetUsageState",
+				"title": "AppMap: Reset Usage State"
+			},
+			{
+				"command": "appmap.inspectCodeObject",
+				"title": "AppMap: Inspect Code Object"
+			},
+			{
+				"command": "appmap.deleteAllAppMaps",
+				"title": "AppMap: Delete All AppMaps"
+			},
+			{
+				"command": "appmap.openCodeObjectInAppMap",
+				"title": "AppMap: Open Code Object in AppMap"
+			},
+			{
+				"command": "appmap.touchOutOfDateTestFiles",
+				"title": "AppMap: Touch Out-of-Date Test Files"
+			},
+			{
+				"command": "appmap.copyOutOfDateTestsToClipboard",
+				"title": "AppMap: Copy Out-of-Date Tests to Clipboard"
+			},
+			{
+				"command": "appmap.context.openInFileExplorer",
+				"title": "AppMap View: Open in File Explorer"
+			},
+			{
+				"command": "appmap.context.openAsJson",
+				"title": "AppMap View: Open as JSON",
+				"icon": "$(bracket)"
+			},
+			{
+				"command": "appmap.context.deleteAppMap",
+				"title": "AppMap View: Delete AppMap",
+				"icon": "$(trash)"
+			},
+			{
+				"command": "appmap.context.rename",
+				"title": "AppMap View: Rename AppMap"
+			},
+			{
+				"command": "appmap.context.saveToCollection",
+				"title": "AppMap View: Save To Collection"
+			},
+			{
+				"command": "appmap.context.compareSequenceDiagrams",
+				"title": "AppMap View: Compare Sequence Diagrams"
+			},
+			{
+				"command": "appmap.context.inspectCodeObject",
+				"title": "AppMap View: Inspect Code Object"
+			},
+			{
+				"command": "appmap.context.deleteAppMaps",
+				"title": "AppMap View: Delete AppMaps"
+			},
+			{
+				"command": "appmap.generateOpenApi",
+				"title": "AppMap: Generate OpenAPI"
+			},
+			{
+				"command": "appmap.sequenceDiagram",
+				"title": "AppMap: Generate Sequence Diagram"
+			},
+			{
+				"command": "appmap.compareSequenceDiagrams",
+				"title": "AppMap: Compare Sequence Diagrams"
+			},
+			{
+				"command": "appmap.explain",
+				"title": "AppMap: Ask Navie AI"
+			},
+			{
+				"command": "appmap.rpc.restart",
+				"title": "AppMap: Restart Navie"
+			},
+			{
+				"command": "appmap.copilot.selectModel",
+				"title": "AppMap: Select Copilot Model"
+			},
+			{
+				"command": "appmap.login",
+				"title": "AppMap: Login"
+			},
+			{
+				"command": "appmap.logout",
+				"title": "AppMap: Logout"
+			},
+			{
+				"command": "appmap.enterLicenseKey",
+				"title": "AppMap: Enter License Key"
+			},
+			{
+				"command": "appmap.updateAppMapTestConfig",
+				"title": "AppMap: Add AppMap Test Configuration"
+			},
+			{
+				"command": "appmap.updateAppMapLaunchConfig",
+				"title": "AppMap: Add AppMap Launch Configuration"
+			},
+			{
+				"command": "appmap.downloadLatestJavaJar",
+				"title": "AppMap: Update Java Jar"
+			},
+			{
+				"command": "appmap.openAIApiKey.set",
+				"title": "AppMap: Set OpenAI API Key"
+			},
+			{
+				"command": "appmap.openAIApiKey.status",
+				"title": "AppMap: Check OpenAI API Key Status"
+			},
+			{
+				"command": "appmap.editor.title.addToContext",
+				"title": "AppMap: Add File To Context"
+			},
+			{
+				"command": "appmap.explorer.addToContext",
+				"title": "AppMap: Add Files To Context"
+			},
+			{
+				"command": "appmap.addToContext",
+				"title": "AppMap: Add Files To Context"
+			}
+		],
+		"configuration": {
+			"title": "AppMap",
+			"properties": {
+				"appMap.applandUrl": {
+					"type": "string",
+					"default": "https://getappmap.com",
+					"description": "URL of AppMap"
+				},
+				"appMap.apiUrl": {
+					"type": "string",
+					"default": "https://api.getappmap.com",
+					"description": "URL of the AppMap API"
+				},
+				"appMap.viewConfiguration": {
+					"type": "string",
+					"description": "Default state of the AppMap view (obtain with AppMap: Copy Current State to Clipboard)"
+				},
+				"appMap.defaultDiagramView": {
+					"type": "string",
+					"description": "Default view on which to open the AppMap: viewComponent, viewSequence, or viewFlow",
+					"default": "viewSequence"
+				},
+				"appMap.inspectEnabled": {
+					"type": "boolean",
+					"description": "Enable detailed inspection of AppMap code objects (preview)"
+				},
+				"appMap.plantUmlJarPath": {
+					"type": "string",
+					"description": "Location of Plant UML JAR (required to generate sequence diagrams) (preview)"
+				},
+				"appMap.commandLineToolsPath": {
+					"type": "string",
+					"description": "Location of AppMap command line tools (used for extension development only)"
+				},
+				"appMap.commandLineVerbose": {
+					"type": "boolean",
+					"description": "Enable verbose output from AppMap command line tools"
+				},
+				"appMap.selectedModel": {
+					"type": "string",
+					"description": "Selected model to use for Navie AI",
+					"default": "*:gpt-4o"
+				},
+				"appMap.commandLineEnvironment": {
+					"type": "object",
+					"description": "Environment variables to pass to AppMap command line tools. NOTE: Requires a restart to take effect.",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"appMap.indexOptions": {
+					"type": "string",
+					"description": "Options to pass to the appmap index command"
+				},
+				"appMap.navie.useVSCodeLM": {
+					"type": "boolean",
+					"description": "Use GitHub Copilot as Navie backend if available.\nRequires a recent VSCode version and GitHub Copilot extension.",
+					"default": true
+				},
+				"appMap.navie.rpcPort": {
+					"type": "number",
+					"description": "Port number to pass to the Navie UI (used for extension development and debugging only)"
+				},
+				"appMap.navie.contextTokenLimit": {
+					"type": "number",
+					"default": 8000,
+					"description": "Default size of the context to send to Navie AI"
+				},
+				"appMap.scannerEnabled": {
+					"type": "boolean",
+					"default": false,
+					"description": "Enable AppMap scanner"
+				},
+				"appMap.maxPinnedFileSizeKB": {
+					"type": "number",
+					"default": 20,
+					"description": "Maximum size of a file (in KB) that can be pinned to the Navie context"
+				},
+				"appMap.useAnimation": {
+					"type": "boolean",
+					"default": true,
+					"description": "Use animations"
+				},
+				"appMap.copilot.preferredModel": {
+					"type": "string",
+					"description": "Preferred Copilot model to use"
+				}
+			}
+		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "appmap",
+					"title": "AppMap",
+					"icon": "images/logo.svg"
+				}
+			]
+		},
+		"viewsWelcome": [
+			{
+				"view": "appmap.views.navie",
+				"contents": "AppMap is initializing...",
+				"when": "!appmap.initialized"
+			},
+			{
+				"view": "appmap.views.navie",
+				"contents": "Ask Navie anything about your application, or get AI-driven code reviews.\n\n[$(comment) New Navie Chat](command:appmap.explain)\n\n[$(law) Review Your Code](command:appmap.navie.quickReview)\nNavie enhances Generative AI models by analyzing your locally stored AppMap data, ensuring highly accurate and context-aware responses specific to your application's behavior.\n[$(link-external) Learn more about AppMap](https://appmap.io/docs/)",
+				"when": "appmap.initialized"
+			},
+			{
+				"view": "appmap.views.appmaps",
+				"contents": "AppMap is initializing...",
+				"when": "!appmap.initialized"
+			},
+			{
+				"view": "appmap.views.appmaps",
+				"contents": "Creating AppMap data for the areas of your application that interest you helps Navie answer very specific questions.\n[Create AppMap Data](command:appmap.openInstallGuide)\n",
+				"when": "appmap.initialized"
+			},
+			{
+				"view": "appmap.views.appmaps",
+				"contents": "Filter matched 0 results.\n[Apply a new filter](command:appmap.applyFilter)",
+				"when": "appmap.initialized && appmap.hasData && appmap.numResults == 0"
+			},
+			{
+				"view": "appmap.views.codeObjects",
+				"contents": "AppMap is initializing...",
+				"when": "!appmap.initialized"
+			},
+			{
+				"view": "appmap.views.findings",
+				"contents": "AppMap is initializing...",
+				"when": "!appmap.initialized"
+			},
+			{
+				"view": "appmap.views.documentation",
+				"contents": "AppMap is initializing...",
+				"when": "!appmap.initialized"
+			}
+		],
+		"views": {
+			"appmap": [
+				{
+					"id": "appmap.views.signIn",
+					"name": "Sign In",
+					"visibility": "visible",
+					"type": "webview",
+					"when": "appMap.showSignIn"
+				},
+				{
+					"id": "appmap.views.navie",
+					"name": "Navie",
+					"visibility": "visible",
+					"when": "!appMap.showSignIn"
+				},
+				{
+					"id": "appmap.views.appmaps",
+					"name": "AppMap Data",
+					"contextualTitle": "AppMap",
+					"visibility": "visible",
+					"icon": "images/logo.svg",
+					"when": "!appMap.showSignIn"
+				},
+				{
+					"id": "appmap.views.findings",
+					"name": "Runtime Analysis",
+					"visibility": "collapsed",
+					"when": "!appMap.showSignIn && appmap.scannerEnabled"
+				},
+				{
+					"id": "appmap.views.codeObjects",
+					"name": "Code Objects",
+					"visibility": "collapsed",
+					"when": "!appMap.showSignIn"
+				},
+				{
+					"id": "appmap.views.documentation",
+					"name": "Documentation",
+					"visibility": "collapsed",
+					"when": "!appMap.showSignIn"
+				}
+			]
+		},
+		"walkthroughs": [
+			{
+				"id": "navie.walkthrough",
+				"title": "Get started with AppMap Navie",
+				"description": "Your AI software assistant to plan, implement, document and diagram code solutions",
+				"steps": [
+					{
+						"id": "Sign in",
+						"title": "Activate AppMap",
+						"description": "Sign-in with email, GitHub, or GitLab to activate AppMap.\n[Open activation form](command:appmap.views.signIn.focus)",
+						"media": {
+							"image": "images/walkthrough/access-the-activation-form-walkthrough.png",
+							"altText": "AppMap logo hovering above AI sparkles"
+						},
+						"when": "appMap.showSignIn",
+						"completionEvents": [
+							"onContext:!appMap.showSignIn"
+						]
+					},
+					{
+						"id": "configure-backend",
+						"title": "Choose your preferred AI model",
+						"description": "AppMap Navie uses the GitHub Copilot LLM if GitHub Copilot is installed. Otherwise, it defaults to the GPT-4o LLM.\n  See the documentation for instructions on using other models.[See the documentation for details](https://appmap.io/docs/navie/bring-your-own-model.html).",
+						"media": {
+							"image": "images/walkthrough/modify-llm-in-chat.png",
+							"altText": "AppMap logo hovering above AI sparkles"
+						},
+						"when": "!appMap.showSignIn"
+					},
+					{
+						"id": "explain-and-diagram",
+						"media": {
+							"image": "images/walkthrough/ask-navie.svg",
+							"altText": "a screenshot of Navie chat"
+						},
+						"title": "Get code explanations and diagrams",
+						"description": "Open Navie to chat interactively about your code. Ask for explanations and diagrams. Navie automatically finds and interprets the most relevant code, documentation, and runtime data traces.\n[Ask Navie AI](command:appmap.explain)\n**Tip**: Use __AppMap: Ask Navie AI__ from the command palette to quickly open Navie.",
+						"when": "!appMap.showSignIn"
+					},
+					{
+						"id": "troubleshoot-and-solve",
+						"media": {
+							"image": "images/walkthrough/generate-and-apply.png",
+							"altText": "a screenshot of Navie chat with @generate command and apply button"
+						},
+						"title": "Solve complex coding issues",
+						"description": "Use Navie commands like @plan, @generate, and @test to solve problems quickly. Use the Apply button on any code suggestion apply the code change to the file. \n[Ask Navie AI](command:appmap.explain)\n**Tip**: Use __AppMap: Ask Navie AI__ from the command palette to quickly open Navie.",
+						"when": "!appMap.showSignIn"
+					},
+					{
+						"id": "ask-about-selection",
+						"title": "Ask about specific code",
+						"description": "Select code in your editor, then open Navie to ask about that specific code.\n**Tip**: Use __AppMap: Ask Navie AI__ from the command palette to quickly open Navie.\nYou can also use the light bulb menu on a code selection to ask Navie about selected code.",
+						"media": {
+							"image": "images/walkthrough/light-bulb.svg",
+							"altText": "light bulb menu showing Ask Navie option"
+						},
+						"when": "!appMap.showSignIn"
+					},
+					{
+						"id": "create-data",
+						"title": "Extend Navie's knowledge with AppMap data",
+						"description": "Recording AppMap trace data provides Navie with deep knowledge of code execution. Navie can see, explain, describe and diagram runtime interactions like HTTP requests and SQL queries.\n[Create AppMap Data](command:appmap.openInstallGuide)\n**Tip:** Use AppMap sidebar to browse your AppMap trace data files.",
+						"media": {
+							"image": "images/walkthrough/record-appmaps.png",
+							"altText": "an illustration of AppMap sidebar and an open execution diagram"
+						},
+						"when": "!appMap.showSignIn"
+					}
+				]
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "appmap.context.openInFileExplorer",
+					"when": "false"
+				},
+				{
+					"command": "appmap.context.rename",
+					"when": "false"
+				},
+				{
+					"command": "appmap.context.saveToCollection",
+					"when": "false"
+				},
+				{
+					"command": "appmap.context.inspectCodeObject",
+					"when": "false"
+				},
+				{
+					"command": "appmap.context.compareSequenceDiagrams",
+					"when": "false"
+				},
+				{
+					"command": "appmap.context.deleteAppMaps",
+					"when": "false"
+				},
+				{
+					"command": "appmap.editor.title.addToContext",
+					"when": "false"
+				},
+				{
+					"command": "appmap.explorer.addToContext",
+					"when": "false"
+				},
+				{
+					"command": "appmap.addToContext",
+					"when": "activeWebviewPanelId=='chatSearch'"
+				}
+			],
+			"editor/title/context": [
+				{
+					"command": "appmap.editor.title.addToContext",
+					"when": "activeWebviewPanelId=='chatSearch' && resourceScheme == 'file'"
+				}
+			],
+			"explorer/context": [
+				{
+					"command": "appmap.explorer.addToContext",
+					"when": "activeWebviewPanelId=='chatSearch'"
+				}
+			],
+			"view/title": [
+				{
+					"command": "appmap.openInstallGuide",
+					"when": "view == appmap.views.appmaps",
+					"group": "navigation@3"
+				},
+				{
+					"command": "appmap.applyFilter",
+					"when": "view == appmap.views.appmaps && appmap.hasData",
+					"group": "navigation@2"
+				},
+				{
+					"command": "appmap.findByName",
+					"when": "view == appmap.views.appmaps && appmap.hasData",
+					"group": "navigation@1"
+				},
+				{
+					"command": "appmap.startRemoteRecording",
+					"when": "view == appmap.views.appmaps && !appmap.recordingIsRunning",
+					"group": "navigation@0"
+				},
+				{
+					"command": "appmap.stopCurrentRemoteRecording",
+					"when": "view == appmap.views.appmaps && appmap.recordingIsRunning",
+					"group": "navigation@0"
+				},
+				{
+					"command": "appmap.navie.history",
+					"when": "view == appmap.views.navie",
+					"group": "navigation@0"
+				},
+				{
+					"command": "appmap.navie.quickReview",
+					"when": "view == appmap.views.navie",
+					"group": "navigation@1"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "appmap.context.openAsJson",
+					"when": "view == appmap.views.appmaps && viewItem == appmap.views.appmaps.appMap",
+					"group": "inline"
+				},
+				{
+					"command": "appmap.context.deleteAppMap",
+					"when": "view == appmap.views.appmaps && viewItem == appmap.views.appmaps.appMap",
+					"group": "inline"
+				},
+				{
+					"command": "appmap.context.openInFileExplorer",
+					"when": "view == appmap.views.appmaps && viewItem == appmap.views.appmaps.appMap"
+				},
+				{
+					"command": "appmap.context.rename",
+					"when": "view == appmap.views.appmaps && viewItem == appmap.views.appmaps.appMap"
+				},
+				{
+					"command": "appmap.context.saveToCollection",
+					"when": "view == appmap.views.appmaps && viewItem == appmap.views.appmaps.appMap"
+				},
+				{
+					"command": "appmap.context.compareSequenceDiagrams",
+					"when": "view == appmap.views.appmaps && viewItem == appmap.views.appmaps.appMap"
+				},
+				{
+					"command": "appmap.context.deleteAppMaps",
+					"when": "view == appmap.views.appmaps && viewItem == appmap.views.appmaps.appMapCollection"
+				},
+				{
+					"command": "appmap.context.inspectCodeObject",
+					"when": "config.appMap.inspectEnabled == true && ( viewItem == appmap.views.codeObjects.package || viewItem == appmap.views.codeObjects.class || viewItem == appmap.views.codeObjects.function || viewItem == appmap.views.codeObjects.query || viewItem == appmap.views.codeObjects.route )"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "node build/updateResources.js && yarn compile",
+		"lint": "eslint . --ext .ts",
+		"pretest": "yarn run lint && tsc --strict --skipLibCheck",
+		"test:precache": "node -e 'require(\"@vscode/test-electron\").downloadAndUnzipVSCode(process.env.VSCODE_INSIDERS_VERSION)'",
+		"test:integration": "ts-node ./test/integrationTest.ts",
+		"test:web-client": "mocha web/test/*.test.mjs",
+		"test:unit": "mocha test/unit/**/*.test.[tj]s",
+		"test:unit:some": "mocha",
+		"test": "yarn test:unit && yarn test:web-client && yarn test:integration && yarn test:system",
+		"compile": "NODE_ENV=production tsup --config tsup.config.ts",
+		"compile:dev": "tsup --config tsup.config.ts",
+		"watch": "tsup --config tsup.config.ts --watch",
+		"package": "vsce package",
+		"publish": "vsce publish",
+		"semantic-release": "semantic-release",
+		"list": "yarn info --json --recursive | build/translateInfo.js"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.22.2",
+		"@semantic-release/changelog": "^5.0.1",
+		"@semantic-release/exec": "^5.0.0",
+		"@semantic-release/git": "^9.0.0",
+		"@types/chai-as-promised": "^7.1.5",
+		"@types/chai-fs": "^2.0.2",
+		"@types/fs-extra": "^9.0.13",
+		"@types/glob": "^7.1.3",
+		"@types/js-yaml": "^4.0.5",
+		"@types/mocha": "^8.2.0",
+		"@types/mockery": "^1.4.30",
+		"@types/node": "^18",
+		"@types/proper-lockfile": "^4.1.2",
+		"@types/ps-node": "^0.1.1",
+		"@types/semver": "^7.3.9",
+		"@types/sinon": "^10.0.2",
+		"@types/sinon-chai": "^3.2.9",
+		"@types/tmp": "^0.2.3",
+		"@types/vscode": "^1.61.0",
+		"@typescript-eslint/eslint-plugin": "^5.52.0",
+		"@typescript-eslint/parser": "^5.52.0",
+		"@vscode/test-electron": "^2.3.8",
+		"@vscode/vsce": "^2.19.0",
+		"@vue/compiler-sfc": "^3.2.37",
+		"appmap-node": "^2.19.3",
+		"browserify-fs": "^1.0.0",
+		"buffer": "^6.0.3",
+		"chai": "^4.3.6",
+		"chai-as-promised": "^7.1.1",
+		"chai-fs": "^2.0.0",
+		"clipboardy": "^2.3.0",
+		"eslint": "^7.17.0",
+		"eslint-config-airbnb-base": "^14.2.1",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-import": "^2.22.1",
+		"eslint-plugin-prettier": "^3.4.0",
+		"fs-extra": "^10.1.0",
+		"glob": "^7.2.3",
+		"ignore": "^5.1.8",
+		"jayson": "^4.1.0",
+		"mocha": "^8.1.3",
+		"mocha-suppress-logs": "^0.3.1",
+		"mockery": "^2.1.0",
+		"nock": "^13.5.4",
+		"node-libs-browser": "^2.2.1",
+		"openapi-types": "^12.1.3",
+		"prettier": "^2.8.4",
+		"prettier-eslint": "^12.0.0",
+		"project-root-directory": "^1.0.3",
+		"ps-node": "^0.1.6",
+		"sass": "^1.32.2",
+		"semantic-release": "^17.3.8",
+		"sinon": "^11.1.2",
+		"sinon-chai": "^3.7.0",
+		"tape": "^5.1.1",
+		"temp": "^0.9.4",
+		"tmp": "^0.2.1",
+		"ts-node": "^10.9.1",
+		"tslib": "^2.1.0",
+		"tsup": "^6.6.3",
+		"typescript": "^4.9.5",
+		"vscode-uri": "^3.0.7",
+		"yaml": "^2.1.1"
+	},
+	"dependencies": {
+		"@appland/client": "^1.23.0",
+		"@appland/components": "^4.46.3",
+		"@appland/diagrams": "^1.8.0",
+		"@appland/models": "^2.10.2",
+		"@appland/rpc": "^1.19.0",
+		"@appland/scanner": "^1.86.0",
+		"@appland/sequence-diagram": "^1.12.0",
+		"@yarnpkg/parsers": "^3.0.0-rc.45",
+		"bootstrap": "^4.5.3",
+		"bootstrap-autocomplete": "^2.3.7",
+		"diff": "^5.1.0",
+		"highlight.js": "^11.9.0",
+		"jquery": "^3.5.1",
+		"js-yaml": "^4.1.0",
+		"node-fetch": "^2.7.0",
+		"popper.js": "^1.16.1",
+		"proper-lockfile": "^4.1.2",
+		"semver": "^7.3.5",
+		"vscode-extension-telemetry": "^0.1.7",
+		"vue": "^2.7.14",
+		"vue-template-compiler": "^2.7.14",
+		"vuex": "^3.6.0"
+	},
+	"__metadata": {
+		"id": "41d86b02-68d3-4049-9422-95da6d11cc2e",
+		"publisherDisplayName": "AppLand",
+		"publisherId": "f7f1004e-6038-49cd-a096-4e618fe53f77",
+		"isPreReleaseVersion": false,
+		"installedTimestamp": 1749647478954,
+		"targetPlatform": "undefined",
+		"size": 63194138
+	},
+	"packageManager": "yarn@3.2.3",
+	"resolutions": {
+		"node-gyp": "^10"
+	}
+}

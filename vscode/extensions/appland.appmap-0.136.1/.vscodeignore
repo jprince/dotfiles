@@ -1,0 +1,16 @@
+# Ignore everything
+*
+*/**
+
+# Explicitly un-ignore specific files and directories
+!.vscodeignore
+!out/*.*
+!images
+!package.json
+!README.md
+!DEVELOPMENT.md
+!LICENSE
+!extern/yarn.js
+!extern/package.json
+!extern/yarn.lock
+!resources

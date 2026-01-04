@@ -23,7 +23,21 @@
     "editor.renderControlCharacters": false,
     "debug.toolBarLocation": "hidden",
     "keyboard.touchbar.enabled": false,
-    "window.zoomLevel": 1,
     "ruby.rubocop.suppressRubocopWarnings": true,
-    "ruby.rubocop.executePath": "/Users/josh/.rvm/gems/ruby-2.7.2/wrappers/"
+    "ruby.rubocop.executePath": "/Users/josh/.rvm/gems/ruby-3.3.0/wrappers/",
+    "gitlens.advanced.messages": {
+        "suppressGitVersionWarning": true
+    },
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "editor.inlineSuggest.enabled": true,
+    "bracketPairColorizer.depreciation-notice": false,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "workbench.editor.empty.hint": "hidden",
+    "editor.multiCursorLimit": 35000
 }

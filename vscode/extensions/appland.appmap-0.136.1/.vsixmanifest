@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+		<Metadata>
+			<Identity Language="en-US" Id="appmap" Version="0.136.1" Publisher="appland" />
+			<DisplayName>AppMap</DisplayName>
+			<Description xml:space="preserve">AI-driven chat with a deep understanding of your code. Build effective solutions using an intuitive chat interface and powerful code visualizations.</Description>
+			<Tags>ai,anthropic,architecture,autocomplete,claude,code analysis,code completion,code explanation,code recommendation,coding assistant,dependency,diagram,diff,documentation,gpt,chatgpt,java,javascript,llm,map,mistral,mixtral,monitoring,node,node.js,observability,ollama,openai,python,refactor,ruby,security,snippets,software design,technical debt,testing,tracing,typescript,uml,visualization</Tags>
+			<Categories>AI,Chat,Visualization,Machine Learning,Programming Languages,Debuggers</Categories>
+			<GalleryFlags>Public</GalleryFlags>
+			
+			<Properties>
+				<Property Id="Microsoft.VisualStudio.Code.Engine" Value="^1.61.0" />
+				<Property Id="Microsoft.VisualStudio.Code.ExtensionDependencies" Value="" />
+				<Property Id="Microsoft.VisualStudio.Code.ExtensionPack" Value="" />
+				<Property Id="Microsoft.VisualStudio.Code.ExtensionKind" Value="workspace" />
+				<Property Id="Microsoft.VisualStudio.Code.LocalizedLanguages" Value="" />
+				
+				
+				<Property Id="Microsoft.VisualStudio.Services.Links.Source" Value="https://github.com/getappmap/vscode-appland.git" />
+				<Property Id="Microsoft.VisualStudio.Services.Links.Getstarted" Value="https://github.com/getappmap/vscode-appland.git" />
+				<Property Id="Microsoft.VisualStudio.Services.Links.GitHub" Value="https://github.com/getappmap/vscode-appland.git" />
+				<Property Id="Microsoft.VisualStudio.Services.Links.Support" Value="https://github.com/getappmap/vscode-appland/issues" />
+				<Property Id="Microsoft.VisualStudio.Services.Links.Learn" Value="https://github.com/getappmap/vscode-appland#readme" />
+				
+				
+				<Property Id="Microsoft.VisualStudio.Services.GitHubFlavoredMarkdown" Value="true" />
+				<Property Id="Microsoft.VisualStudio.Services.Content.Pricing" Value="Free"/>
+
+				
+				<Property Id="Microsoft.VisualStudio.Services.CustomerQnALink" Value="https://appmap.io/docs/faq.html" />
+			</Properties>
+			<License>extension/LICENSE.txt</License>
+			<Icon>extension/images/logo.png</Icon>
+		</Metadata>
+		<Installation>
+			<InstallationTarget Id="Microsoft.VisualStudio.Code"/>
+		</Installation>
+		<Dependencies/>
+		<Assets>
+			<Asset Type="Microsoft.VisualStudio.Code.Manifest" Path="extension/package.json" Addressable="true" />
+			<Asset Type="Microsoft.VisualStudio.Services.Content.Details" Path="extension/README.md" Addressable="true" />
+<Asset Type="Microsoft.VisualStudio.Services.Content.License" Path="extension/LICENSE.txt" Addressable="true" />
+<Asset Type="Microsoft.VisualStudio.Services.Icons.Default" Path="extension/images/logo.png" Addressable="true" />
+		</Assets>
+	</PackageManifest>
